@@ -1,3 +1,4 @@
+import by.itacademy.bakumenko.CalcPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -11,12 +12,11 @@ public class WeightCalcTest {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://svyatoslav.biz/testlab/wt/index.php");
-        String enterButtonLocator = "/html/body/table/tbody/tr[2]/td[2]/form/table/tbody/tr[6]/td/input";
-        By enterButtonBy = By.xpath(enterButtonLocator);
+        CalcPage calcPage = new CalcPage();
+        By enterButtonBy = By.xpath(calcPage.enterButtonLocator);
         WebElement enterButtonWebElement = driver.findElement(enterButtonBy);
         enterButtonWebElement.click();
-        String enterButtonResult = "/html/body/table/tbody/tr[2]/td[2]/form/table/tbody/tr[1]/td/b";
-        By ButtonResultBy = By.xpath(enterButtonResult);
+        By ButtonResultBy = By.xpath(calcPage.enterButtonResult);
         WebElement buttonGetResultElement = driver.findElement(ButtonResultBy);
         String actual = buttonGetResultElement.getText();
         String expected = ("Не указано имя.\nРост должен быть в диапазоне 50-300 см." +
