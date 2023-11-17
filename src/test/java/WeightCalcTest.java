@@ -13,16 +13,15 @@ public class WeightCalcTest {
         driver.manage().window().maximize();
         driver.get("https://svyatoslav.biz/testlab/wt/index.php");
         CalcPage calcPage = new CalcPage();
-        By enterButtonBy = By.xpath(calcPage.enterButtonLocator);
-        WebElement enterButtonWebElement = driver.findElement(enterButtonBy);
+        WebElement enterButtonWebElement = driver.findElement( By.xpath(calcPage.enterButtonLocator));
         enterButtonWebElement.click();
-        By ButtonResultBy = By.xpath(calcPage.enterButtonResult);
-        WebElement buttonGetResultElement = driver.findElement(ButtonResultBy);
-        String actual = buttonGetResultElement.getText();
-        String expected = ("Не указано имя.\nРост должен быть в диапазоне 50-300 см." +
+        WebElement buttonGetResultElement = driver.findElement(By.xpath(calcPage.enterButtonResult));
+        Assertions.assertEquals 
+            ( 
+                "Не указано имя.\nРост должен быть в диапазоне 50-300 см." +
                 "\nВес должен быть в диапазоне 3-500 кг." +
-                "\nНе указан пол.");
-        Assertions.assertEquals(expected, actual);
+                "\nНе указан пол.",  buttonGetResultElement.getText()
+         );
         driver.close();
     }
 }
